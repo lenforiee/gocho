@@ -21,6 +21,7 @@ require (
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 // indirect
 	github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742 // indirect
+	github.com/roman-kachanovsky/go-binary-pack v0.0.0-20170214094030-e260e0dc6732 // indirect
 	github.com/savsgio/gotils v0.0.0-20210921075833-21a6215cb0e4 // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect

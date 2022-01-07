@@ -33,6 +33,8 @@ github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421/go.mod h1:6dJ
 github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742 h1:Esafd1046DLDQ0W1YjYsBW+p8U2u7vzgW2SQVmlNazg=
 github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742/go.mod h1:bx2lNnkwVCuqBIxFjflWJWanXIb3RllmbCylyMrvgv0=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
+github.com/roman-kachanovsky/go-binary-pack v0.0.0-20170214094030-e260e0dc6732 h1:cu91qu1+Yzl3BC0BUKKuiPkT5O2E4MaVTUAkh9Xeneg=
+github.com/roman-kachanovsky/go-binary-pack v0.0.0-20170214094030-e260e0dc6732/go.mod h1:4aW4O8uyDJOg9waxhoBpMtBTjVFT+m8NUoawVIAJMso=
 github.com/savsgio/gotils v0.0.0-20210921075833-21a6215cb0e4 h1:ocK/D6lCgLji37Z2so4xhMl46se1ntReQQCUIU4BWI8=
 github.com/savsgio/gotils v0.0.0-20210921075833-21a6215cb0e4/go.mod h1:oejLrk1Y/5zOF+c/aHtXqn3TFlzzbAgPWg8zBiAHDas=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
