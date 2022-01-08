@@ -8,12 +8,12 @@ import (
 
 type Packet struct {
 	packetBuffer []byte
-	offset int
-	PacketID uint16
-	PacketLen uint32
+	offset       int
+	PacketID     uint16
+	PacketLen    uint32
 }
 
-var HEADER_LEN = 7 
+var HEADER_LEN = 7
 
 // Create new packet.
 func NewPacketReader(buffer []byte) (packet Packet) {
@@ -22,6 +22,8 @@ func NewPacketReader(buffer []byte) (packet Packet) {
 	packet.PacketID = 0
 	packet.PacketLen = 0
 
+	packet.ReadHeader()
+	packet.MultiPacketCheck()
 	return packet
 }
 
@@ -72,24 +74,24 @@ func ReadUint(b []byte) int {
 }
 
 func (p *Packet) Read(size int) (data []byte) {
-	data = p.packetBuffer[p.offset:p.offset+size]
+	data = p.packetBuffer[p.offset : p.offset+size]
 	p.offset += size
 	return data
 }
 
 func (p *Packet) ReadHeader() {
 	//headerData := p.Read(HEADER_LEN)
-	p.PacketID = p.ReadUint16()//int16(ReadInt(headerData[:2]))
+	p.PacketID = p.ReadUint16() //int16(ReadInt(headerData[:2]))
 	p.Read(1)
-	p.PacketLen = p.ReadUint32()//int32(ReadInt(headerData[2:6]))
+	p.PacketLen = p.ReadUint32() //int32(ReadInt(headerData[2:6]))
 }
 
-// func (p *Packet) MultiPacketCheck() {
-// 	// Checks if the packet has additional data.
-// 	if len(p.packetBuffer) > (p.packetLen + HEADER_LEN) {
-// 		p.packetBuffer = p.packetBuffer[:HEADER_LEN + p.packetLen]
-// 	}
-// }
+func (p *Packet) MultiPacketCheck() {
+	// Checks if the packet has additional data.
+	if len(p.packetBuffer) > (int(p.PacketLen) + HEADER_LEN) {
+		p.packetBuffer = p.packetBuffer[:HEADER_LEN+int(p.PacketLen)]
+	}
+}
 
 func (p *Packet) ReadUint8() uint8 {
 	return uint8(ReadUint(p.Read(1))) // uncast the type.
@@ -138,7 +140,7 @@ func (p *Packet) ReadFloat64() (val float64) {
 }
 
 func (p *Packet) ReadFloat32() (val float32) {
-    buf := bytes.NewBuffer(p.Read(4))
+	buf := bytes.NewBuffer(p.Read(4))
 	binary.Read(buf, binary.LittleEndian, &val)
 	return val
 }
@@ -152,8 +154,8 @@ func (p *Packet) ReadOsuString() string {
 	var shift uint
 	for {
 		b := p.ReadUint8()
-		val |= (int(b & 0x7F) << shift)
-		if b & 0x80 == 0 {
+		val |= (int(b&0x7F) << shift)
+		if b&0x80 == 0 {
 			break
 		}
 		shift += 7
