@@ -13,7 +13,7 @@ type Packet struct {
 	PacketLen    uint32
 }
 
-var HEADER_LEN = 7
+const HEADER_LEN = 7
 
 // Create new packet.
 func NewPacketReader(buffer []byte) (packet Packet) {
@@ -81,8 +81,8 @@ func (p *Packet) Read(size int) (data []byte) {
 
 func (p *Packet) ReadHeader() {
 	//headerData := p.Read(HEADER_LEN)
-	p.PacketID = p.ReadUint16() //int16(ReadInt(headerData[:2]))
-	p.Read(1)
+	p.PacketID = p.ReadUint16()  //int16(ReadInt(headerData[:2]))
+	p.Read(1)                    // One byte thats 0.
 	p.PacketLen = p.ReadUint32() //int32(ReadInt(headerData[2:6]))
 }
 

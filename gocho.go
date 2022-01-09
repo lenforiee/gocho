@@ -6,6 +6,7 @@ import (
 	"github.com/fasthttp/router"
 	"github.com/valyala/fasthttp"
 
+	globals "github.com/lenforiee/gocho/globals"
 	"github.com/lenforiee/gocho/logger"
 	packets "github.com/lenforiee/gocho/packets"
 )
@@ -20,6 +21,9 @@ func main() {
 	router.GET("/", RootPage)
 	router.POST("/", packets.RouterPage)
 
-	logger.Info(fmt.Sprintf("Starting to handle gocho connections on 127.0.0.1:%d!", 8080))
-	fasthttp.ListenAndServe(":8080", router.Handler)
+	globals.ReadConfig()
+	globals.InitialiseConnections()
+
+	logger.Info(fmt.Sprintf("Starting to handle gocho connections on 127.0.0.1:%d!", globals.Config.Port))
+	fasthttp.ListenAndServe(fmt.Sprintf(":%d", globals.Config.Port), router.Handler)
 }

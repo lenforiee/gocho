@@ -1,8 +1,8 @@
 package logger
 
 import (
-    "fmt"
-    "time"
+	"fmt"
+	"time"
 )
 
 func formatDate() (dateFormat string) {
@@ -15,7 +15,7 @@ func Info(message string) { // sooo cursed lmfao.
 	fmt.Println("\033[37m\033[42m[INFO]\033[49m - [", formatDate(), "]", message, "\033[39m")
 }
 
-func Error(message error) { // sooo cursed lmfao.
+func Error(message string) { // sooo cursed lmfao.
 	fmt.Println("\033[37m\033[41m[ERROR]\033[49m - [", formatDate(), "]", message, "\033[39m")
 }
 
